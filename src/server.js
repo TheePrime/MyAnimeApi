@@ -1,7 +1,9 @@
 import express from 'express'
 import {Logger} from 'borgen'
 import connectDB from './connect.js'
-import Product from './Product.model.js'
+import { fetchAndSaveAnime } from './controllers/animeController.js'
+import router from './routes/router.js'
+
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -12,18 +14,11 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 
 app.get('/', (req,res)=>{
-
-    res.send("Hello world")
+    
+    res.send("Hello AnimeWorld")
 })
 
-app.post('/api/products', async (req,res)=>{
-    const {name, quantity} = req.body
-
-    const product = await Product.create(req.body)
-
-    console.log(req.body)
-    res.send(req.body)
-})
+app.use(router)
 
 
 
@@ -34,6 +29,7 @@ const startserver= ()=>{
             message: `Server is running on port ${PORT}`,
             messageColor: "cyan"
         })
+        fetchAndSaveAnime()
     })
 }
 

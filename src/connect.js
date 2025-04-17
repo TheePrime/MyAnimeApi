@@ -4,7 +4,7 @@ import {Logger} from 'borgen'
 
 
 const connectDB =(startserver)=>{
-    mongoose.connect("mongodb://127.0.0.1:27017/anime")
+    mongoose.connect("mongodb://127.0.0.1:27017/Myanime")
     .then(()=> {
         Logger.info({
             message: `Connected to database...`,
